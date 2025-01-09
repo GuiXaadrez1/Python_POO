@@ -1,0 +1,36 @@
+1 - O que é o self ?
+    
+    O self é uma convenção usada em Python para representar a instância atual da classe.
+    Ele é um parâmetro que deve ser explicitamente declarado em métodos de instância e
+    permite acessar os atributos e métodos pertencentes a essa instância específica.
+
+    Basicamente o this. do java
+
+2 - Por que o self é importante?
+
+    I - Acessar atributos e métodos da instância:
+
+        Com self, você pode acessar ou modificar os atributos da instância que chamou o
+        método.
+    
+    II - Diferenciar variáveis locais de atributos da instância:
+
+        Sem self, não há como distinguir entre variáveis locais (dentro de um método) e
+        atributos da instância.
+
+    III - Manter consistência entre instâncias:
+
+        Cada instância da classe pode ter seus próprios valores para os atributos, e o
+        self garante que os métodos estejam sempre atuando na instância correta.
+
+3 - Exemplo:
+
+class Pessoa:
+
+    # O self refere-se à instância que está sendo criada
+    def __init__(self, nome, idade):  
+        self.nome = nome  # Atributo da instância
+        self.idade = idade  # Atributo da instância
+
+    def apresentar(self):  # Método de instância
+        print(f"Olá, meu nome é {self.nome} e eu tenho {self.idade} anos.")

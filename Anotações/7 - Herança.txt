@@ -1,0 +1,207 @@
+1 - O que é Herança em Python?
+
+    Herança é um dos pilares da Programação Orientada a Objetos (POO). Ela permite que
+    você reutilize o código definindo uma nova classe que herda atributos e métodos de uma
+    classe existente. A classe que herda é chamada de classe filha, e a classe da qual ela
+    herda é chamada de classe pai (ou classe base).
+
+    A herança promove a reutilização de código, reduz duplicação e facilita a manutenção
+    de sistemas.
+
+2 - Como funciona a Herança em Python?
+
+    A herança é definida ao passar a classe pai como argumento ao criar a classe filha.
+    
+    Exemplo básico:
+
+        class Animal:  # Classe Pai
+            def __init__(self, nome):
+                self.nome = nome
+
+            def mover(self):
+                print(f"{self.nome} está se movendo.")
+
+        # Classe Filha
+        class Cachorro(Animal):
+            def latir(self):
+                print(f"{self.nome} está latindo.")
+
+        # Classe Filha
+        class Gato(Animal):
+            def miar(self):
+                print(f"{self.nome} está miando.")
+        
+        if __name__ == "__main__"
+            
+            cachorro = Cachorro("Rex")
+            cachorro.mover()  # Método herdado da classe pai
+            cachorro.latir()  # Método específico da classe filha
+
+            gato = Gato("Mingau")
+            gato.mover()  # Método herdado da classe pai
+            gato.miar()  # Método específico da classe filha
+        
+        Saída:
+
+            Rex está se movendo.
+            Rex está latindo.
+            Mingau está se movendo.
+            Mingau está miando.
+
+3 - Tipos de Herança:
+
+    I - Herança Simples
+
+        Uma classe filha herda de uma única classe pai.
+
+        Exemplo:
+
+            class Veiculo:
+                def __init__(self, tipo):
+                    self.tipo = tipo
+
+                def mover(self):
+                    print(f"O {self.tipo} está se movendo.")
+
+            class Carro(Veiculo):
+                def acelerar(self):
+                    print(f"O {self.tipo} está acelerando.")
+
+    II -  Herança Múltipla
+
+        Uma classe filha herda de várias classes pais.
+
+        Exemplo:
+            class A:
+                def metodo_a(self):
+                    print("Método de A")
+
+            class B:
+                def metodo_b(self):
+                    print("Método de B")
+
+            class C(A, B):  # Herança múltipla
+                pass
+
+            obj = C()
+            obj.metodo_a()  # Método herdado de A
+            obj.metodo_b()  # Método herdado de B
+        
+    III - Herança Multinível
+        
+        Uma classe herda de outra classe, que por sua vez herda de outra.
+        
+        Exemplo:
+
+            class Animal:
+                def comer(self):
+                    print("Está comendo.")
+
+            class Mamifero(Animal):
+                def mamar(self):
+                    print("Está mamando.")
+
+            class Cachorro(Mamifero):
+                def latir(self):
+                    print("Está latindo.")
+
+    IV - Hierárquica
+        
+        Várias classes filhas herdam de uma única classe pai.
+    
+        Exemplo:
+
+            class Animal:
+                def mover(self):
+                    print("Está se movendo.")
+
+            class Cachorro(Animal):
+                def latir(self):
+                    print("Está latindo.")
+
+            class Gato(Animal):
+                def miar(self):
+                    print("Está miando.")
+
+    V - Sobrescrita de Métodos (Overriding)
+        
+        A classe filha pode sobrescrever métodos da classe pai para alterar o comportamento.
+
+        Exemplo:
+
+        class Animal:
+            def som(self):
+                print("O animal faz um som.")
+
+        class Cachorro(Animal):
+            def som(self):  # Sobrescrevendo o método da classe pai
+                print("O cachorro late.")
+
+        animal = Animal()
+        animal.som()  # Saída: O animal faz um som.
+
+        cachorro = Cachorro()
+        cachorro.som()  # Saída: O cachorro late.
+
+
+4 - Usando o Super para chamar métodos da classe Pai 
+
+    Super(): Chamando métodos da classe pai
+    
+    A função super() permite acessar métodos e atributos da classe pai dentro da classe
+    filha.
+
+    Exemplo:
+    
+            class Animal:
+                def __init__(self, nome):
+                    self.nome = nome
+
+                def som(self):
+                    print("O animal faz um som.")
+
+            class Cachorro(Animal):
+                def __init__(self, nome, raca):
+                    super().__init__(nome)  # Chamando o construtor da classe pai
+                    self.raca = raca
+
+                def som(self):
+                    super().som()  # Chamando o método da classe pai
+                    print("O cachorro late.")
+
+            if __name__ == "__main__":
+
+                cachorro = Cachorro("Rex", "Labrador")
+                print(cachorro.nome)  # Saída: Rex
+                print(cachorro.raca)  # Saída: Labrador
+                cachorro.som()
+            
+            Saída:
+
+                O animal faz um som.
+                O cachorro late.
+
+5 - Vantagens da Herança
+
+    I - Reutilização de código:
+
+     Reduz a necessidade de duplicação de código.
+    
+    II - Organização:
+
+        Permite criar hierarquias de classes mais organizadas e lógicas.
+    
+    III - Extensibilidade:
+
+        Facilita a adição de novas funcionalidades sem alterar o código existente.
+
+    IV - Facilidade de manutenção:
+
+        Mudanças na classe pai podem refletir automaticamente em todas as classes filhas.
+
+6 - Resumo:
+
+    Herança permite criar uma nova classe com base em uma classe existente.
+    Promove reutilização de código e reduz duplicação.
+    Classes filhas podem adicionar ou sobrescrever métodos e atributos.
+    super() pode ser usado para chamar métodos ou construtores da classe pai.

@@ -2,13 +2,14 @@
 
     - Classe
     - Objeto
+    - Instanciação
     - Atributos 
     - Métodos
     - encapsulamento
     - Heranças
     - polimorfismo
-    - Instanciação
-    - Endereçamento
+    - Abstração
+    
 
 2 - O que são atributos da classe? 
     
@@ -81,6 +82,7 @@
 
 
 6 - Como funciona a Instanciação de uma Classe?
+    
     Agora vamos entender a principal diferença entre Objeto e Classe
 
     Classe: é o conceito, uma forma, é como se fosse uma planta na arquitetura, ou seja
@@ -127,3 +129,126 @@
     string, e usar as funções type() e dir(), você vai adquirir informações desta
     variável retornando como uma classe se usar a função type e informações de todos os
     métodos/ações que essa classe pode fazer se usar a função dir()
+
+    Exemplo:
+
+        print(type(1))
+        print(type('Amor'))
+        print(type(pessoa1))
+
+        Saida:
+            <class 'int'>
+            <class 'str'>
+            <class '__main__.Pessoa'>
+
+8 - polimorfismo em POO
+
+    É Capacidade de objetos de diferentes classes responderem de maneira diferente
+    a uma mesma chamada de método
+
+    Exemplo:
+        
+        class Forma:
+            def area(self):
+                pass
+
+        class Quadrado(Forma):
+            def __init__(self, lado):
+                self.lado = lado
+
+            def area(self):
+                return self.lado ** 2
+
+        class Circulo(Forma):
+            def __init__(self, raio):
+                self.raio = raio
+
+            def area(self):
+                import math
+                return math.pi * self.raio ** 2
+
+        # Usando polimorfismo
+        if __name__ == "__main__":
+        
+            formas = [Quadrado(4), Circulo(3)]
+            for forma in formas:
+                print(f"Área: {forma.area()}")
+
+9 - Abstração
+   
+    Uma classe abstrata é uma classe que serve como base para outras classes e que não
+    pode ser instanciada diretamente. Ela é usada para fornecer uma estrutura
+    (ou interface) comum para suas subclasses, mas deixa a implementação de certos métodos
+    para ser definida pelas subclasses.
+
+    Classes abstratas são frequentemente usadas em situações onde diferentes classes
+    compartilham características gerais, mas possu  em implementações específicas.
+
+
+    Em python usamos classe abstrata da seguinye forma:
+
+    Definida usando o módulo abc:
+
+        O Python utiliza o módulo abc (Abstract Base Classes) para criar classes abstratas.
+        Uma classe é abstrata se herda de ABC (uma metaclasse). 
+        
+        Usa-se Métodos abstratos:
+
+            Contém métodos declarados, mas sem implementação. Eles são decorados com
+            @abstractmethod. Subclasses devem obrigatoriamente implementar todos os
+            métodos abstratos para serem instanciáveis.
+
+        Não pode ser instanciada:
+
+        Tentar criar um objeto diretamente de uma classe abstrata gera um erro.
+        
+        Pode ter métodos e atributos concretos:
+
+            Além de métodos abstratos, uma classe abstrata pode conter métodos e atributos
+            com implementação padrão, que podem ser compartilhados ou sobrescritos pelas
+            subclasses.
+
+    Exemplo:
+
+        from abc import ABC, abstractmethod
+
+        # Classe abstrata
+        class Forma(ABC):
+            @abstractmethod
+            def calcular_area(self):
+                """Método abstrato que deve ser implementado pelas subclasses"""
+                pass
+
+            @abstractmethod
+            def calcular_perimetro(self):
+                """Outro método abstrato"""
+                pass
+
+        # Subclasse concreta
+        class Retangulo(Forma):
+            def __init__(self, largura, altura):
+                self.largura = largura
+                self.altura = altura
+
+            def calcular_area(self):
+                return self.largura * self.altura
+
+            def calcular_perimetro(self):
+                return 2 * (self.largura + self.altura)
+
+        # Subclasse concreta
+        class Circulo(Forma):
+            def __init__(self, raio):
+                self.raio = raio
+
+            def calcular_area(self):
+                return 3.14 * self.raio**2
+
+            def calcular_perimetro(self):
+                return 2 * 3.14 * self.raio
+
+10 - métodos abstratos
+
+    Um método abstrato é aquele que é declarado em uma classe abstrata, mas não possui
+    implementação na classe base. As classes que herdam da classe abstrata são obrigadas
+    a implementar todos os métodos abstratos.

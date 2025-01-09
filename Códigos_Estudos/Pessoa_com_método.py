@@ -28,3 +28,9 @@ if __name__ == "__main__":
     '''
     # Ação/método da classe de exibir informações que são os atributos de pessoa
     pessoa1.exibir_informações()
+    '''
+    print(type(1))
+    print(type('Amor'))
+    print(type(pessoa1))
+    Basicamente tudo em python são objetos
+    '''

@@ -1,0 +1,143 @@
+1 - O que é Método Abstrato? 
+
+    Um método abstrato é um método que é definido em uma classe abstrata, mas não possui
+    implementação nela. Ele serve como um esqueleto para ser implementado nas classes
+    filhas. Em outras palavras, um método abstrato define a assinatura de um método
+    (ou seja, seu nome e parâmetros), mas não especifica como o método deve se comportar,
+    delegando essa responsabilidade para as subclasses.
+
+    O uso de métodos abstratos em Python é uma parte importante da abstração e pode ser
+    implementado com o módulo abc (Abstract Base Class).
+
+2 - Como Funciona um Método Abstrato?
+
+    - Para definir um método abstrato em Python, você precisa:
+
+        * Criar uma classe abstrata usando o módulo abc.
+        
+        * Usar o decorador @abstractmethod para indicar que um método é abstrato.
+        
+        * O método abstrato não possui corpo; ele apenas define a assinatura do método
+        (nome e parâmetros) e deve ser implementado nas classes filhas.
+        
+        * Se uma classe filha não implementar o método abstrato, ela também será
+        considerada abstrata e não poderá ser instanciada.
+
+3 - Exemplo de Método Abstrato
+
+    from abc import ABC, abstractmethod
+
+    # Classe Abstrata com método abstrato
+    class Forma(ABC):
+        @abstractmethod
+        def calcular_area(self):
+            pass  # Não implementado, deve ser implementado nas subclasses
+
+    # Subclasse que implementa o método abstrato
+    class Circulo(Forma):
+        def __init__(self, raio):
+            self.raio = raio
+
+        def calcular_area(self):
+            return 3.14 * self.raio ** 2  # Fórmula para área de um círculo
+
+    # Subclasse que implementa o método abstrato
+    class Retangulo(Forma):
+        def __init__(self, largura, altura):
+            self.largura = largura
+            self.altura = altura
+
+        def calcular_area(self):
+            return self.largura * self.altura  # Fórmula para área de um retângulo
+
+    # Tentando instanciar a classe Forma diretamente (isso geraria um erro)
+    # forma = Forma()  # Isso geraria um erro, pois Forma é uma classe abstrata.
+
+    # Criando objetos das classes filhas que implementaram o método abstrato
+    circulo = Circulo(10)
+    retangulo = Retangulo(5, 8)
+
+    print(f"Área do círculo: {circulo.calcular_area()}")  # Saída: 314.0
+    print(f"Área do retângulo: {retangulo.calcular_area()}")  # Saída: 40
+
+
+    - Exeplicação:
+    
+        Classe Forma: Ela é uma classe abstrata que define o método abstrato
+        calcular_area. Não fornecemos a implementação do método na classe Forma.
+
+        Classes Circulo e Retangulo: Ambas são subclasses de Forma e implementam o método
+        abstrato calcular_area, fornecendo suas próprias implementações específicas para
+        calcular a área de um círculo e de um retângulo.
+
+        Erro ao tentar instanciar Forma diretamente: Não podemos criar um objeto da classe
+        Forma diretamente, pois ela contém métodos abstratos não implementados.
+
+        Objetos das subclasses: Instanciamos objetos de Circulo e Retangulo, e chamamos
+        o método calcular_area, que agora tem uma implementação concreta, dependendo da
+        classe.
+
+4 - Quando Usar Métodos Abstratos? 
+
+
+    - Garantir que subclasses implementem certos métodos: Se você tiver uma classe base
+    que define uma interface (ou comportamento comum), você pode usar métodos abstratos
+    para garantir que todas as classes filhas implementem esse comportamento.
+
+    - Evitar código repetido: Defina uma estrutura de métodos na classe abstrata que pode
+    ser reutilizada por diversas subclasses.
+
+    - Definir contratos: Usar métodos abstratos cria uma "obrigação" para as subclasses,
+    que devem fornecer uma implementação para os métodos abstratos.
+
+    Exemplo de Abstração e Métodos com Vários Métodos:
+
+        from abc import ABC, abstractmethod
+
+        class Animal(ABC):
+            @abstractmethod
+            def fazer_som(self):
+                pass
+            
+            @abstractmethod
+            def comer(self):
+                pass
+
+        class Cachorro(Animal):
+            def fazer_som(self):
+                print("O cachorro late.")
+
+            def comer(self):
+                print("O cachorro come ração.")
+
+        class Gato(Animal):
+            def fazer_som(self):
+                print("O gato mia.")
+
+            def comer(self):
+                print("O gato come peixe.")
+
+        # Criando objetos
+        cachorro = Cachorro()
+        gato = Gato()
+
+        cachorro.fazer_som()  # Saída: O cachorro late.
+        gato.comer()  # Saída: O gato come peixe.
+
+    Neste exemplo:
+
+        A classe Animal define dois métodos abstratos: fazer_som e comer.
+        
+        As classes Cachorro e Gato implementam esses métodos com comportamentos
+        específicos.
+
+5 - Resumo:
+
+    - Métodos abstratos são métodos definidos em uma classe abstrata que não têm
+    implementação na classe abstrata, mas devem ser implementados nas subclasses.
+
+    - Eles servem para fornecer uma estrutura que as subclasses devem seguir,
+    garantindo que cada subclasse forneça a implementação dos métodos essenciais.
+
+    - O uso de métodos abstratos ajuda a criar um contrato entre a classe base e as
+    subclasses, promovendo consistência e modularidade no código.

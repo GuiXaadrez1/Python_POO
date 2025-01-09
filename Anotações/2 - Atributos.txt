@@ -1,0 +1,15 @@
+1 - O que são atributos da classe? 
+    
+    Vamos começar entendendo o que são atributos de uma classe.
+    
+    Os atributos são propriedades e características de uma determinada classe
+
+    Exemplo:
+
+        class Pessoa:
+            
+            def __init__(self, nome, idade):  # Método construtor
+                self.nome = nome  # Atributo da classe
+                self.idade = idade  # Atributo da classe
+    
+    - O método construtor podemos definir parâmetros para instanciar uma classe

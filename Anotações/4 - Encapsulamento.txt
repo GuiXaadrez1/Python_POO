@@ -1,0 +1,66 @@
+1 - O que é o encapsulamento em Poo?
+    
+    O encapsulamento é um dos pilares da Programação Orientada a Objetos (POO) e consiste
+    em proteger os dados e comportamentos de um objeto contra acessos diretos e indevidos,
+    fornecendo controle sobre como os atributos e métodos podem ser acessados e
+    modificados.
+
+    Em Python, o encapsulamento é implementado usando diferentes níveis de acesso aos
+    atributos e métodos de uma classe.
+
+2 - Níveis de acesso:
+
+    I - Público (public):
+
+        Qualquer atributo ou método declarado normalmente (sem prefixos) é considerado
+        público. Pode ser acessado e modificado diretamente de fora da classe.
+    
+        Exemplo:
+
+            class Pessoa:
+                def __init__(self, nome):
+                    self.nome = nome  # Atributo público
+
+            pessoa = Pessoa("Alice")
+            print(pessoa.nome)  # Acesso direto: Alice
+            pessoa.nome = "João"  # Modificação direta
+            print(pessoa.nome)  # Saída: João
+
+    II - Protegido (protected):
+
+        Indicado com um underscore simples (_).
+        
+        Sinaliza que o atributo ou método não deve ser acessado diretamente fora da classe,
+        mas ainda pode ser acessado se necessário. É mais uma convenção do que uma 
+        restrição.
+
+        Exemplo:
+
+        class Pessoa:
+            def __init__(self, nome):
+                self._nome = nome  # Atributo protegido
+
+        pessoa = Pessoa("Alice")
+        print(pessoa._nome)  # Funciona, mas não é recomendado acessar diretamente
+
+    III - Privado (private):
+
+        Indicado com um underscore duplo (__).
+
+        Os atributos e métodos privados não podem ser acessados diretamente de fora da
+        classe.
+
+        Isso é implementado usando name mangling (o nome do atributo é alterado 
+        internamente para evitar acessos diretos).
+
+        Exemplo:
+
+            class Pessoa:
+                def __init__(self, nome):
+                    self.__nome = nome  # Atributo privado
+
+            pessoa = Pessoa("Alice")
+            # print(pessoa.__nome)  # Erro: AttributeError
+        
+        Para acessar atributos privados, geralmente são usados métodos especiais, como
+        getters e setters.

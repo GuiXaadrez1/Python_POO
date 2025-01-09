@@ -1,0 +1,40 @@
+1 - Vamos entender o conceito de Classe e Objeto
+
+    Classe: é o conceito, uma forma, é como se fosse uma planta na arquitetura, ou seja
+    podemos definir que a classe ainda não existe é apenas ideia do que aquilo pode ser
+
+    Dentro desta classe temos atributos e métodos
+
+    Objeto: É a materialização de uma classe, é pegar a planta e transformar em uma casa,
+    prédio, ou seja, concretizar aquela planta.
+
+    Basicamente ao instanciarmos uma classe, criamos um objeto
+    
+    Exemplo:
+        
+        # Definindo uma classe
+        class Pessoa:
+            def __init__(self, nome, idade):  # Método construtor
+                self.nome = nome  # Atributo da classe
+                self.idade = idade  # Atributo da classe
+
+        def apresentar(self):  # Método da classe
+            print(f"Olá, meu nome é {self.nome} e eu tenho {self.idade} anos.")
+
+    # Executar apenas se o arquivo for o script principal
+    if __name__ == "__main__":
+        
+        # Criando objetos instanciado a classe pessoa na variável pessoa1
+        pessoa1 = Pessoa("Alice", 30)
+        pessoa2 = Pessoa("João", 25)
+
+        # Chamando métodos
+        pessoa1.apresentar()
+        pessoa2.apresentar()
+
+
+    OBSERVAÇÃO -> if __name__ == "__main__":
+
+        É usado para garantir que um bloco de código seja executado apenas quando o script
+        for executado diretamente. Quando o arquivo é importado como módulo, o código
+        dentro desse bloco não será executado.   

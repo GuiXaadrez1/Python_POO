@@ -1,0 +1,63 @@
+1 - O que é um método construtor?
+
+    Um método construtor em Python é um método especial que é chamado automaticamente
+    quando um objeto é criado a partir de uma classe. Ele é usado para inicializar os
+    atributos do objeto com valores específicos e definir seu estado inicial.
+
+    Em Python, o método construtor é definido com o nome especial __init__.
+
+
+2 - Características do método construtor:
+
+    I - Nome reservado:
+
+        O construtor é sempre chamado de __init__.
+        É um método dunder (double underscore) usado exclusivamente para inicialização de
+        objetos.
+
+    II - Chamada automática:
+
+        Quando você instancia um objeto com Classe(), o Python automaticamente chama o
+        método __init__ da classe.
+
+    III - Pode receber argumentos:
+
+    Além de self, o construtor pode aceitar outros parâmetros para personalizar a criação
+    do objeto.
+
+    IV - Opcional:
+
+        Se você não definir um construtor em sua classe, o Python usará um construtor
+        padrão (que não faz nada além de criar o objeto)
+
+3 - Exemplo:
+
+    class ContaBancaria:
+        def __init__(self, titular, saldo=0):
+            self.titular = titular
+            self.saldo = saldo
+
+        def depositar(self, valor):
+            self.saldo += valor
+
+        def sacar(self, valor):
+            if valor > self.saldo:
+                print("Saldo insuficiente!")
+            else:
+                self.saldo -= valor
+
+        def exibir_saldo(self):
+            print(f"Titular: {self.titular}, Saldo: R$ {self.saldo:.2f}")
+
+    if __name__ == "Main":
+
+        # Criando uma conta bancária
+        conta = ContaBancaria("Maria", 1000)
+        conta.exibir_saldo()  # Saída: Titular: Maria, Saldo: R$ 1000.00
+
+        conta.depositar(500)
+        conta.exibir_saldo()  # Saída: Titular: Maria, Saldo: R$ 1500.00
+
+        conta.sacar(2000)  # Saída: Saldo insuficiente!
+        conta.sacar(300)
+        conta.exibir_saldo()  # Saída: Titular: Maria, Saldo: R$ 1200.00

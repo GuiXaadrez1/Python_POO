@@ -1,0 +1,151 @@
+1 - polimorfismo em POO
+
+    Polimorfismo é um dos pilares da Programação Orientada a Objetos (POO). Em Python,
+    refere-se à habilidade de usar o mesmo nome de método ou operador para diferentes
+    tipos de objetos ou classes. Isso significa que um mesmo método ou interface pode se
+    comportar de maneiras diferentes dependendo do objeto ou contexto em que está sendo
+    usado. A palavra "polimorfismo" vem do grego e significa "muitas formas".
+
+2 - Por que usar Polimorfismo?
+
+    I - Flexibilidade:
+
+        Permite escrever código que pode trabalhar com diferentes tipos de objetos de
+        forma genérica.
+    
+    II - Extensibilidade:
+
+        Facilita a adição de novos comportamentos ou tipos de objetos sem modificar o
+        código existente.
+
+    III - Reutilização de código:
+
+        Reduz a necessidade de reescrever código para diferentes classes.
+
+3 - Tipos de Polimorfismo:
+
+    I - Polimorfismo com Métodos
+
+        Diferentes classes podem ter métodos com o mesmo nome, mas com comportamentos
+        distintos.
+    
+    Exemplo:
+       
+        class Cachorro:
+            def som(self):
+                print("O cachorro late.")
+
+        class Gato:
+            def som(self):
+                print("O gato mia.")
+
+        class Vaca:
+            def som(self):
+                print("A vaca muge.")
+
+        # Polimorfismo: mesma interface (método 'som'), diferentes comportamentos
+       
+        animais = [Cachorro(), Gato(), Vaca()]
+        for animal in animais:
+            animal.som()
+       
+        Saída:
+
+        O cachorro late.
+        O gato mia.
+        A vaca muge.
+
+    II - Polimorfismo com Herança
+
+        Uma classe pai define uma interface genérica, e as classes filhas sobrescrevem os
+        métodos com comportamentos específicos.
+    
+        Exemplo: 
+
+        class Animal:
+            
+            def som(self):
+                raise NotImplementedError("Este método deve ser implementado 
+                pela classe filha")
+
+        class Cachorro(Animal):
+            def som(self):
+                print("O cachorro late.")
+
+        class Gato(Animal):
+            def som(self):
+                print("O gato mia.")
+
+        def fazer_som(animal):
+            animal.som()  # Polimorfismo: comportamento diferente dependendo do objeto
+    
+        # Usando polimorfismo
+        fazer_som(Cachorro())  # Saída: O cachorro late.
+        fazer_som(Gato())      # Saída: O gato mia.
+
+    III - Polimorfismo com Funções ou Operadores
+
+        Em Python, funções e operadores são polimórficos, pois podem operar em diferentes
+        tipos de dados.
+
+        Exemplo com a função len(): A função len() funciona em diferentes tipos de objetos,
+        como strings, listas ou dicionários.
+
+        print(len("Python"))  # Saída: 6 (número de caracteres na string)
+        print(len([1, 2, 3, 4]))  # Saída: 4 (número de elementos na lista)
+        print(len({"chave1": "valor1", "chave2": "valor2"}))  # Saída: 2 
+        (número de pares chave-valor no dicionário)
+
+    Exemplo com operadores: O operador + funciona de maneira diferente dependendo do tipo
+    dos operandos.
+
+        print(2 + 3)  # Saída: 5 (soma de números inteiros)
+        print("Olá" + " Mundo")  # Saída: Olá Mundo (concatenação de strings)
+        print([1, 2] + [3, 4])  # Saída: [1, 2, 3, 4] (concatenação de listas)
+
+    IV - Polimorfismo com o Decorador @abstractmethod   
+    
+        Podemos usar o decorador @abstractmethod para garantir que todas as classes
+        filhas de uma classe abstrata implementem um método específico, promovendo
+        polimorfismo.
+
+        Exemplo:
+            
+            from abc import ABC, abstractmethod
+
+            class Forma(ABC):  # Classe abstrata
+                @abstractmethod
+                def calcular_area(self):
+                    pass
+
+            class Circulo(Forma):
+                def __init__(self, raio):
+                    self.raio = raio
+
+                def calcular_area(self):
+                    return 3.14 * self.raio ** 2
+
+            class Retangulo(Forma):
+                def __init__(self, largura, altura):
+                    self.largura = largura
+                    self.altura = altura
+
+                def calcular_area(self):
+                    return self.largura * self.altura
+
+            # Polimorfismo: mesmo método, comportamentos diferentes
+            formas = [Circulo(10), Retangulo(5, 8)]
+            for forma in formas:
+                print(f"Área: {forma.calcular_area()}")
+            
+            Saída:
+
+            Área: 314.0
+            Área: 40
+
+4 - Resumo:
+
+    Polimorfismo significa que um mesmo método, função ou operador pode funcionar de
+    maneiras diferentes, dependendo do tipo do objeto.
+    Em Python, é usado com métodos de classes, herança e operadores.
+    Promove flexibilidade, reutilização de código e abstração.

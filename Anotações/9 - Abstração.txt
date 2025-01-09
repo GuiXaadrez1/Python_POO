@@ -1,0 +1,133 @@
+1 - O que é Abstração em POO no Python?
+
+    A abstração em Python é alcançada por meio de classes abstratas, que são definidas
+    pela biblioteca abc (Abstract Base Classes). Uma classe abstrata não pode ser 
+    instanciada diretamente; ela serve como um modelo para outras classes que irão
+    implementar os métodos definidos na classe abstrata.
+
+    A principal característica da abstração é que ela permite que você defina a interface
+    que as classes filhas devem implementar, sem especificar a implementação completa dos
+    métodos.
+
+2 - Implementando Abstração com abc
+
+    Classe Abstrata: Define uma classe com a palavra-chave ABC e o decorador
+    @abstractmethod.
+    
+    Método Abstrato: Define métodos que não possuem implementação na classe abstrata,
+    mas que devem ser implementados pelas classes filhas.
+
+    Exemplo:
+        
+         from abc import ABC, abstractmethod
+
+        # Classe Abstrata
+        class Forma(ABC):
+            @abstractmethod
+            def calcular_area(self):
+                pass  # Método abstrato, sem implementação na classe abstrata
+
+        # Classe que herda de Forma e implementa o método abstrato
+        class Circulo(Forma):
+            def __init__(self, raio):
+                self.raio = raio
+
+            def calcular_area(self):
+                # Implementação do método para calcular área de um círculo
+                return 3.14 * self.raio ** 2  
+                
+
+        class Retangulo(Forma):
+            def __init__(self, largura, altura):
+                self.largura = largura
+                self.altura = altura
+
+            def calcular_area(self):
+                return self.largura * self.altura  # Implementação do método para calcular área de um retângulo
+
+        # Criando objetos de classes concretas
+        circulo = Circulo(10)
+        retangulo = Retangulo(5, 8)
+
+        # Polimorfismo: chamando o método 'calcular_area' de diferentes tipos de formas
+
+        print(f"Área do círculo: {circulo.calcular_area()}")  # Saída: 314.0
+        print(f"Área do retângulo: {retangulo.calcular_area()}")  # Saída: 40
+
+    Explicação do código:
+
+        - A classe Forma é uma classe abstrata que define um método abstrato 
+         calcular_area. Esse método não possui implementação, mas exige que as 
+         classes filhas o implementem.
+
+        - As classes Circulo e Retangulo herdam de Forma e fornecem a implementação
+        concreta para o método calcular_area.
+
+        Ao instanciar objetos de Circulo e Retangulo, conseguimos chamar o 
+        método calcular_area de uma maneira genérica (polimorfismo), e ele se comporta 
+        de maneira diferente dependendo do tipo de forma.
+
+3 - Abstração sem usar abc
+
+    Embora a biblioteca abc seja uma maneira formal de implementar abstração em Python,
+    você também pode usar abstração informal sem definir uma classe abstrata.
+    Isso significa que você pode criar uma classe com métodos que não são implementados
+    e esperar que as subclasses os implementem.
+
+    Exemplo:
+        
+        class Forma:
+            def calcular_area(self):
+                raise NotImplementedError("Este método deve ser implementado pela classe filha")
+
+        class Quadrado(Forma):
+            def __init__(self, lado):
+                self.lado = lado
+
+            def calcular_area(self):
+                return self.lado ** 2
+
+        quadrado = Quadrado(4)
+        print(f"Área do quadrado: {quadrado.calcular_area()}")  # Saída: 16
+
+    Neste exemplo:
+
+        - A classe Forma define o método calcular_area, mas lança um erro se for chamado
+        diretamente (não implementado na classe Forma).
+        
+        - A classe Quadrado implementa o método calcular_area, tornando-se uma classe
+        concreta.
+
+4 - Por que usar Abstração?
+
+    I - Esconder complexidade:
+
+        A abstração ajuda a esconder a complexidade dos detalhes internos e permite que o
+        usuário interaja apenas com a interface simples e clara.
+
+    II - Desacoplamento:
+
+        Ao separar a definição da interface da implementação, você desacopla as classes
+        e torna o código mais modular e fácil de manter.
+
+    III - Facilidade de manutenção e expansão:
+
+        Se você precisa adicionar novas formas (por exemplo, quadrado, triângulo) que
+        implementam o método calcular_area, você pode fazer isso facilmente sem alterar o
+        código que já usa a classe Forma.
+
+    IV - Controle de comportamento:
+
+        Você pode garantir que todas as subclasses de uma classe abstrata implementem
+        métodos essenciais, mantendo uma interface comum para todas.
+
+5 - Resumo:
+
+    Abstração é o processo de esconder a implementação complexa e expor apenas os detalhes
+    necessários.
+    Classes abstratas (usando ABC e @abstractmethod) são usadas para definir interfaces
+    que as subclasses devem seguir.
+    As classes filhas implementam os métodos abstratos, proporcionando flexibilidade e
+    desacoplamento no código.
+    A abstração ajuda a esconder detalhes desnecessários e proporciona maior controle
+    sobre o comportamento dos objetos.

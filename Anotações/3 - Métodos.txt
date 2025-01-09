@@ -1,0 +1,18 @@
+1 - O que são métodos da classe?
+
+    Os métodos são ações que a classe irá fazer, basicamente os métodos são as funções
+    da programação processual, essas funções definem o comportamento das classes
+
+    Lembre-se: Programação é uma lista de instruções lógicas que o computador irá fazer 
+    de forma processual, é o passo a passo.
+
+    Exemplo:
+        
+        # Definindo uma classe
+        class Pessoa:
+            def __init__(self, nome, idade):  # Método construtor
+                self.nome = nome  # Atributo da classe
+                self.idade = idade  # Atributo da classe
+
+            def apresentar(self):  # Método da classe (Ação)
+                print(f"Olá, meu nome é {self.nome} e eu tenho {self.idade} anos.")

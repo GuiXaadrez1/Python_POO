@@ -1,0 +1,132 @@
+1 - O que são os Getters e Setters:
+    
+    Getters e Setters são métodos usados para acessar e modificar atributos de uma
+    classe de forma controlada. Eles fazem parte do conceito de encapsulamento,
+    permitindo que o acesso aos dados internos da classe seja feito de maneira segura e
+    estruturada. Geralmente usadas em classes com nivel de encapsulamento privado
+
+2 - Por que usar Getters e Setters: 
+
+    I - Controle de acesso aos atributos:
+
+        Permitem que você valide ou processe os valores antes de acessá-los ou alterá-los.
+
+    II - Proteger a implementação interna:
+
+        Você pode mudar a forma como os atributos são armazenados ou processados sem
+        alterar o código externo que usa sua classe.
+
+    III - Facilidade de manutenção:
+
+        Eles oferecem uma interface consistente, mesmo se a lógica interna dos atributos
+        mudar.
+
+3 - Exemplo básico sem o @propety:
+
+    class Pessoa:
+        def __init__(self, nome, idade):
+            self.__nome = nome  # Atributo privado
+            self.__idade = idade  # Atributo privado
+
+        # Getter para o nome
+        def get_nome(self):
+            return self.__nome
+
+        # Setter para o nome
+        def set_nome(self, novo_nome):
+            if isinstance(novo_nome, str):  # Validação: O nome deve ser uma string
+                self.__nome = novo_nome
+            else:
+                print("O nome deve ser uma string!")
+
+        # Getter para a idade
+        def get_idade(self):
+            return self.__idade
+
+        # Setter para a idade
+        def set_idade(self, nova_idade):
+            if isinstance(nova_idade, int) and nova_idade > 0:  # Validação
+                self.__idade = nova_idade
+            else:
+                print("A idade deve ser um número inteiro positivo!")
+    
+    if __name__ == "Main":
+
+        pessoa = Pessoa("Alice", 30)
+
+        # Usando o getter
+        print(pessoa.get_nome())  # Saída: Alice
+
+        # Usando o setter
+        pessoa.set_nome("João")
+        print(pessoa.get_nome())  # Saída: João
+
+        # Tentando atribuir valores inválidos
+        pessoa.set_idade(-5)  # Saída: A idade deve ser um número inteiro positivo!
+
+4 - @propety:
+
+    O Python permite que você use os decoradores @property, @atributo.setter e 
+    @atributo.deleter para criar getters e setters de forma mais elegante e "natural". 
+    Com isso, você acessa e modifica os atributos como se fossem públicos, mas mantém o
+    controle interno.
+
+    Exemplo:
+        
+        class Pessoa:
+            def __init__(self, nome, idade):
+                self.__nome = nome  # Atributo privado
+                self.__idade = idade  # Atributo privado
+
+            # Getter para nome
+            @property
+            def nome(self):
+                return self.__nome
+
+            # Setter para nome
+            @nome.setter
+            def nome(self, novo_nome):
+                if isinstance(novo_nome, str):  # Validação
+                    self.__nome = novo_nome
+                else:
+                    raise ValueError("O nome deve ser uma string!")
+
+            # Getter para idade
+            @property
+            def idade(self):
+                return self.__idade
+
+            # Setter para idade
+            @idade.setter
+            def idade(self, nova_idade):
+                if isinstance(nova_idade, int) and nova_idade > 0:  # Validação
+                    self.__idade = nova_idade
+                else:
+                    raise ValueError("A idade deve ser um número inteiro positivo!")
+        
+        if __name__ == "Main":
+            
+            pessoa = Pessoa("Alice", 30)
+
+            # Usando os getters
+            
+            print(pessoa.nome)  # Saída: Alice
+            print(pessoa.idade)  # Saída: 30
+
+            # Usando os setters
+            
+            pessoa.nome = "João"
+            pessoa.idade = 25
+            print(pessoa.nome)  # Saída: João
+            print(pessoa.idade)  # Saída: 25
+
+            # Tentando atribuir valores inválidos
+            # pessoa.idade = -5  
+            # Levanta um ValueError: A idade deve ser um número inteiro positivo!
+
+5 - RESUMÃO:
+
+    Getter: Método para ler o valor de um atributo.
+    Setter: Método para alterar o valor de um atributo com validação, se necessário.
+    @property: Forma mais elegante e Pythonic de implementar getters e setters, permitindo
+    acesso a atributos como se fossem públicos. 
