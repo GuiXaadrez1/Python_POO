@@ -1,0 +1,55 @@
+1 - O que é DocString?
+    
+    Docstrings são strings literais usadas para documentar módulos, classes e funções em
+    Python. Elas servem como uma maneira de descrever o propósito e o funcionamento de um
+    bloco de código, ajudando outros desenvolvedores (ou você mesmo no futuro) a entender
+    o que o código faz.
+
+2 - Características das Docstrings:
+
+    - Colocação: São colocadas logo após a definição de um módulo, classe ou função.
+
+    - Uso de Strings: Geralmente escritas usando aspas triplas (""" ou '''), permitindo
+    textos com múltiplas linhas.
+    
+    - Acessibilidade: Podem ser acessadas em tempo de execução usando o atributo especial
+    .__doc__.
+
+3 - Exemplos: 
+
+    I - Exemplo Com funções:
+
+        def soma(a, b):
+            """
+            Calcula a soma de dois números.
+
+            Args:
+                a (int ou float): Primeiro número.
+                b (int ou float): Segundo número.
+
+            Returns:
+                int ou float: O resultado da soma entre `a` e `b`.
+            """
+            return a + b
+
+    II - Exemplo com Classes: 
+        
+        class Pessoa:
+        """
+        Representa uma pessoa com nome e idade.
+
+        Attributes:
+            nome (str): O nome da pessoa.
+            idade (int): A idade da pessoa.
+        """
+
+        def __init__(self, nome, idade):
+            """
+            Inicializa uma nova instância de Pessoa.
+
+            Args:
+                nome (str): O nome da pessoa.
+                idade (int): A idade da pessoa.
+            """
+            self.nome = nome
+            self.idade = idade
